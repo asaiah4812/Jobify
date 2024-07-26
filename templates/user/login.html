@@ -1,0 +1,35 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- header -->
+    <section class="register">
+        <div class="container">    
+            {% if messages %}
+                {% for msg in messages %}
+                <div class="alert alert-{{msg.tags}}" role="alert">
+                    <b>{{msg}}</b>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <form action="" method="POST" autocomplete="false">
+            {% csrf_token %}
+            <h1>Login Page</h1>
+                <div class="form__input">
+                    <label for="username">Username</label>
+                    <input type="text" autocomplete="false" name="username">
+                </div>
+                <div class="form__input">
+                    <label for="password">Password</label>
+                    <input type="password" autocomplete="false" name="password">
+                </div>
+               
+                <p>Don't have an account create as <a href="{% url 'user:register-recruiter' %}">recruiter!</a></p>
+                <p>Don't have an account create as <a href="{% url 'user:register-applicant' %}">applicant!</a></p>
+
+                <button type="submit">Login</button>
+        </form>
+    </section>
+
+{% endblock %}

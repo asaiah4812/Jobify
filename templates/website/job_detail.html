@@ -1,0 +1,89 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block style %}
+ <nav class="navbar" style="background: #a1defa;">
+    {% if request.user.is_athenticated %}
+    <a href="{% url 'dashboard:dashboard' %}" class="navbar-logo"><img src="{% static 'images/logo.svg' %}" alt="logo"></a>
+    {% else %}
+    <a href="{% url 'website:home' %}" class="navbar-logo"><img src="{% static 'images/logo.svg' %}" alt="logo"></a>
+        {% endif %}
+        <div class="navbar-menu">
+            {% if request.user.is_authenticated %}
+            <a href="#">Apply for Jobs</a>
+            <a href="{% url 'resume:update-resume' %}">Create resume</a>
+             <a href="{% url 'website:job-listing' %}">Find Jobs </a>
+            {% else %}
+            <a href="#">Apply for Jobs</a>
+            <a href="#companies">Companies</a>
+            <a class="menu-button" href="{% url 'user:login' %}">Get started</a>
+            {% endif %}
+        </div>
+        <div class="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+{% endblock %}
+{% block content %}
+
+    <!-- header -->
+    <section class="job-details">
+        <h1>Customer Support Executor</h1>
+        <p style="color: #fff;">{{job.location}} | Remote | NGN{{job.salary|intcomma}}</p>
+        {% if request.user.is_authenticated %}
+        {% if has_applied == True %}
+        <p style="color: #fff;">You have already applied for this Job</p>
+        {% else %}
+        <a href="{% url 'job:apply-to-jobs' job.pk %}" class="btns">Apply for Job</a>
+        {% endif%}
+        {% else %}
+        <a href="{% url 'user:login' %}" class="btns">Login to Apply</a>
+        {% endif %}
+    </section>
+     
+    <section id="jobs" class="company-info">
+        <div>
+            <div class="flex-center-row">
+                <h2>Job Requirement</h2>
+                <p>
+                   {{job.requirements}}
+                </p>
+            </div>
+            <div>
+                <h2>Ideal Condidate</h2>
+                <p>
+                    {{job.ideal_candidate}}
+                </p>
+            </div>
+        </div>
+        <div class="job-others">
+            <div>
+                <h2>About the Company</h2>
+                <p>Company name: {{job.company.name}}</p>
+                <p>Company Location: {{job.company.city}}, {{job.company.state}}</p>
+                <p>Company establish Year: {{job.company.est_date}}</p>
+                <div class="inner">
+                    <span>Last updated 3mins ago</span>
+                </div>
+            </div>
+            <div>
+                <h2>Other Details</h2>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                <div class="inner">
+                    <span>Last updated 3mins ago</span>
+                </div>
+            </div>
+            <div>
+                <h2>Related jobs</h2>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                <div class="inner">
+                    <span>Last updated 3mins ago</span>
+                </div>
+            </div>
+        </div>
+    </section>
+  {% endblock %}

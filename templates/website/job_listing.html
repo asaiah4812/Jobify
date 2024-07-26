@@ -1,0 +1,45 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block style %}
+ <nav class="navbar" style="background: #a1defa;">
+        <a href="{% url 'website:home' %}" class="navbar-logo"><img src="{% static 'images/logo.svg' %}" alt="logo"></a>
+        <div class="navbar-menu">
+            <a href="#">Apply for Jobs</a>
+            <a href="#companies">Companies</a>
+            <a class="menu-button" href="{% url 'user:login' %}">Get started</a>
+        </div>
+        <div class="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+{% endblock %}
+{% block content %}
+
+<section class="job_listings" >
+        <h1 class="section-title">Featured Companies</h1>
+        
+        <div class="featured-wrapper" style="text-align: left;">
+            {% if jobs %}
+            {% for job in jobs %}
+            <div class="featured-card">
+                <h3>{{job.title}}</h3>
+                <p class="card-text">
+                  Job Location: {{job.location}}
+                </p>
+                <p class="card-text">Job Salary: {{job.salary|intcomma}}</p>
+                <a href="{% url 'website:job-details' job.pk %}">View details</a>
+                <div class="card-footer">
+                    <small class="text-muted">Created {{ job.timestamp|naturaltime }}</small>
+                </div>
+            </div>
+           {% endfor %}
+           {% endif %}
+        </div>
+    </section>
+
+{% endblock %}

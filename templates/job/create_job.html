@@ -1,0 +1,18 @@
+{% extends 'job/base.html' %}
+{% load static %}
+{% block title %} Job Creation Page {% endblock %}
+{% block content %}
+
+    <section class="register">
+        <h1>Create Job </h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h1>Create A Resume</h1>
+                <div class="form__input">
+                    {{form}}
+                </div>
+                <button type="submit">Submit</button>
+        </form>
+    </section>
+
+{% endblock %}

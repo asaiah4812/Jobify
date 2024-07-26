@@ -1,0 +1,21 @@
+{% extends 'company/base.html' %}
+{% load static %}
+{% block title %} Job Creation Page {% endblock %}
+
+{% block content %}
+
+    <section class="register">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1>Create A job AD</h1>
+            <div class="form__input">
+                 {{form}}
+                </div>
+               
+
+                <button type="submit">Submit</button>
+        </form>
+    </section>
+
+
+{% endblock %}

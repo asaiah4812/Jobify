@@ -1,0 +1,40 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+        <!-- header -->
+    <section class="register">
+        <div class="container">    
+            {% if messages %}
+                {% for msg in messages %}
+                <div class="alert alert-{{msg.tags}}" role="alert">
+                    <b>{{msg}}</b>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h1>Applicant Registration Page</h1>
+                <div class="form__input">
+                    <label for="email">Email</label>
+                    <input type="email" name="email">
+                </div>
+                <div class="form__input">
+                    <label for="username">Username</label>
+                    <input type="text" name="username">
+                </div>
+                <div class="form__input">
+                    <label for="password1">Password</label>
+                    <input type="password" name="password1">
+                </div>
+                <div class="form__input">
+                    <label for="password2">Confirm password</label>
+                    <input type="password" name="password2">
+                </div>
+
+                <p>have an account Login <a href="{% url 'user:login' %}">here!</a></p>
+
+                <button type="submit">Register</button>
+        </form>
+    </section>
+ {% endblock %}

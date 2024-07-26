@@ -1,0 +1,45 @@
+{% extends 'job/base.html' %}
+{% load static %}
+{% block title %} All applied Jobs {% endblock %}
+{% block content %}
+
+    <section class="table ">
+
+        <section class="table__inner">
+
+            
+            <section class="table__header">
+            <h1>All Applicants for {{job.title}} Position</h1>
+        </section>
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Frist Name</th>
+                        <th>Surname</th>
+                        <th>Location</th>
+                        <th>Job Position/Title</th>
+                        <th>Applicants Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                {% for applicant in applicants %}
+                <tbody>
+                    <tr>
+                        <td>{{applicant.user.resume.first_name}}</td>
+                        <td>{{applicant.user.resume.surname}}</td>
+                        <td>{{applicant.user.resume.location}}</td>
+                        <td>{{applicant.user.resume.job_title}}</td>
+                        <td>{{applicant.timestamp}}</td>
+                        <td><a href="#">Download resume</a></td>
+                        <!-- We set the action as a button so it can be styled -->
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </section>
+    </section>
+
+    </section>
+
+    {% endblock %}

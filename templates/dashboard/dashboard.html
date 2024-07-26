@@ -1,0 +1,522 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if request.user.is_recruiter %}
+    <!-- header -->
+    <header>
+        <div class="container p-5">    
+            {% if messages %}
+                {% for msg in messages %}
+                <div class="alert p-4 alert-{{msg.tags}}" role="alert">
+                    <b>{{msg}}</b>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <h1 class="header-title">
+            RECRUITE <br> <span>YOUR PERFECT</span> <br> EMPLOYEE
+        </h1>
+    </header>
+
+    <!-- search -->
+    <div class="search-wrapper">
+        <div class="search-box">
+            <div class="search-card">
+                <input type="text" class="search-input" type="text" placeholder="Job title or keyword">
+                <button class="search-button">Search</button>
+            </div>
+        </div>
+    </div>
+    <!-- filter box -->
+    <div class="filter-box">
+        <div class="filter-dropdown">
+            <select name="job-level" id="job-level" class="filter-select">
+                <option value="">Job Level</option>
+                <option value="">Entry</option>
+                <option value="">Job LevelMid-Senior</option>
+                <option value="">Director</option>
+            </select>
+            <select name="job-function" id="job-function" class="filter-select">
+                <option value="">Job Function</option>
+                <option value="">IT</option>
+                <option value="">Management</option>
+                <option value="">Education</option>
+            </select>
+            <select name="employment" id="employment" class="filter-select">
+                <option value="">Employment Type</option>
+                <option value="">Intership</option>
+                <option value="">Part Time</option>
+                <option value="">Full Time</option>
+            </select>
+            <select name="job-function" id="job-function" class="filter-select">
+                <option value="">Locations</option>
+                <option value="">Remote</option>
+                <option value="">US</option>
+                <option value="">UK</option>
+            </select>
+            <select name="education" id="education" class="filter-select">
+                <option value="">Education</option>
+                <option value="">High chool</option>
+                <option value="">Bachelor's degree</option>
+                <option value="">Master's degree</option>
+            </select>
+        </div>
+        <div class="filter-chosen">
+            <div class="chosen-card">
+                Remote <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="chosen-card">
+                Full time <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="chosen-card">
+                Financial Tech <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="chosen-card">
+                Entry Level <i class="fas fa-times-circle"></i>
+            </div>
+        </div>
+        
+            {% if not request.user.has_company %}
+                    <div class="alert alert-danger" role="alert">
+                        <b>You are seeing this because you have'nt created any company. Create one from <a href="{% url 'company:update-company' %}">here</a></b>
+                    </div>
+            {% endif %}
+    </div>
+
+    <!-- job listing -->
+    <section class="job-list" id="jobs">
+        <div class="job-card">
+            <div class="job-name">
+                <img class="job-profile" src="{% static 'images/Tesla.png' %}" alt="">
+                <div class="job-detail">
+                    <h4>Tesla</h4>
+                    <h3>Mechanical Engineer</h3>
+                    <p> 
+                        Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                </div>
+            </div>
+            <div class="job-label"> 
+                <a class="label-a" href="#">HTML</a>
+                <a class="label-b" href="#">CSS</a>
+                <a class="label-c" href="#">Javascripts</a>
+            </div>
+            <div class="job-posted">
+                Posted 2mins ago
+            </div>
+        </div>
+        <div class="job-card">
+            <div class="job-name">
+                <img class="job-profile" src="{% static 'images/ebay.jpg' %}" alt="">
+                <div class="job-detail">
+                    <h4>Ebay</h4>
+                    <h3>Business Development</h3>
+                    <p> 
+                        Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                </div>
+            </div>
+            <div class="job-label"> 
+                <a class="label-a" href="#">HTML</a>
+                <a class="label-b" href="#">CSS</a>
+                <a class="label-c" href="#">Javascripts</a>
+            </div>
+            <div class="job-posted">
+                Posted 2mins ago
+            </div>
+        </div>
+        <div class="job-card">
+            <div class="job-name">
+                <img class="job-profile" src="{% static 'images/youtube.jpg' %}" alt="">
+                <div class="job-detail">
+                    <h4>Youtuber</h4>
+                    <h3>UI/ UX Designer</h3>
+                    <p> 
+                        Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                </div>
+            </div>
+            <div class="job-label"> 
+                <a class="label-a" href="#">HTML</a>
+                <a class="label-b" href="#">CSS</a>
+                <a class="label-c" href="#">Javascripts</a>
+            </div>
+            <div class="job-posted">
+                Posted an hour ago
+            </div>
+        </div>
+        <div class="job-card">
+            <div class="job-name">
+                <img class="job-profile" src="{% static 'images/react.jpg' %}" alt="">
+                <div class="job-detail">
+                    <h4>React</h4>
+                    <h3>Senior Developer</h3>
+                    <p> 
+                        Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                </div>
+            </div>
+            <div class="job-label"> 
+                <a class="label-a" href="#">HTML</a>
+                <a class="label-b" href="#">CSS</a>
+                <a class="label-c" href="#">Javascripts</a>
+            </div>
+            <div class="job-posted">
+                Posted 2mins ago
+            </div>
+        </div>
+        <div class="job-card">
+            <div class="job-name">
+                <img class="job-profile" src="{% static 'images/chrome.jpg' %}" alt="">
+                <div class="job-detail">
+                    <h4>Chrome</h4>
+                    <h3>Senior Developer</h3>
+                    <p> 
+                        Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                </div>
+            </div>
+            <div class="job-label"> 
+                <a class="label-a" href="#">HTML</a>
+                <a class="label-b" href="#">CSS</a>
+                <a class="label-c" href="#">Javascripts</a>
+            </div>
+            <div class="job-posted">
+                Posted 2mins ago
+            </div>
+        </div>
+        <div class="job-card">
+            <div class="job-name">
+                <img class="job-profile" src="{% static 'images/tiktok.jpg' %}" alt="">
+                <div class="job-detail">
+                    <h4>Tiktok</h4>
+                    <h3>Software Developer</h3>
+                    <p> 
+                        Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                </div>
+            </div>
+            <div class="job-label"> 
+                <a class="label-a" href="#">HTML</a>
+                <a class="label-b" href="#">CSS</a>
+                <a class="label-c" href="#">Javascripts</a>
+            </div>
+            <div class="job-posted">
+                Posted 2mins ago
+            </div>
+        </div>
+        <button class="job-more">More List</button>
+    </section>
+
+    <!-- join -->
+
+    <section class="join">
+        <div class="join-detail">
+            <h1 class="section-title">LETS START YOUR NEW JOB WITH US</h1>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            </p>
+            <button class="join-button">Join Now</button>
+        </div>
+    </section>
+
+    <!-- featured company -->
+    <section class="featured" id="companies">
+        <h1 class="section-title">Featured Companies</h1>
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        </p>
+        <div class="featured-wrapper">
+            <div class="featured-card">
+                <img src="{% static 'images/ebay.jpg' %}" class="featured-image" alt="">
+                <p>Ebay</p>
+                <button class="featured-button">View 2 Jobs</button>
+            </div>
+            <div class="featured-card">
+                <img src="{% static 'images/youtube.jpg' %}" class="featured-image" alt="">
+                <p>Youtube</p>
+                <button class="featured-button">View 1 Jobs</button>
+            </div>
+            <div class="featured-card">
+                <img src="{% static 'images/tiktok.jpg' %}" class="featured-image" alt="">
+                <p>Tiktok</p>
+                <button class="featured-button">View 3 Jobs</button>
+            </div>
+            <div class="featured-card">
+                <img src="{% static 'images/Tesla.png' %}" class="featured-image" alt="">
+                <p>Tesla</p>
+                <button class="featured-button">View 3 Jobs</button>
+            </div>
+            <div class="featured-card">
+                <img src="{% static 'images/chrome.jpg' %}" class="featured-image" alt="">
+                <p>Chrome</p>
+                <button class="featured-button">View 5 Jobs</button>
+            </div>
+            <div class="featured-card">
+                <img src="{% static 'images/react.jpg' %}" class="featured-image" alt="">
+                <p>React</p>
+                <button class="featured-button">View 4 Jobs</button>
+            </div>
+        </div>
+    </section>
+
+    {% elif request.user.is_applicant %}
+
+
+        <!-- header -->
+    <header>
+        <div class="container p-5">    
+            {% if messages %}
+                {% for msg in messages %}
+                <div class="alert p-4 alert-{{msg.tags}}" role="alert">
+                    <b>{{msg}}</b>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <h1 class="header-title">
+            FIND YOUR <br> <span>PERFECT JOBS</span> <br> EASILY
+        </h1>
+    </header>
+
+    <!-- search -->
+    <div class="search-wrapper">
+        <div class="search-box">
+            <div class="search-card">
+                <input type="text" class="search-input" type="text" placeholder="Job title or keyword">
+                <button class="search-button">Search</button>
+            </div>
+        </div>
+    </div>
+    <!-- filter box -->
+    <div class="filter-box">
+        <div class="filter-dropdown">
+            <select name="job-level" id="job-level" class="filter-select">
+                <option value="">Job Level</option>
+                <option value="">Entry</option>
+                <option value="">Job LevelMid-Senior</option>
+                <option value="">Director</option>
+            </select>
+            <select name="job-function" id="job-function" class="filter-select">
+                <option value="">Job Function</option>
+                <option value="">IT</option>
+                <option value="">Management</option>
+                <option value="">Education</option>
+            </select>
+            <select name="employment" id="employment" class="filter-select">
+                <option value="">Employment Type</option>
+                <option value="">Intership</option>
+                <option value="">Part Time</option>
+                <option value="">Full Time</option>
+            </select>
+            <select name="job-function" id="job-function" class="filter-select">
+                <option value="">Locations</option>
+                <option value="">Remote</option>
+                <option value="">US</option>
+                <option value="">UK</option>
+            </select>
+            <select name="education" id="education" class="filter-select">
+                <option value="">Education</option>
+                <option value="">High chool</option>
+                <option value="">Bachelor's degree</option>
+                <option value="">Master's degree</option>
+            </select>
+        </div>
+        <div class="filter-chosen">
+            <div class="chosen-card">
+                Remote <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="chosen-card">
+                Full time <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="chosen-card">
+                Financial Tech <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="chosen-card">
+                Entry Level <i class="fas fa-times-circle"></i>
+            </div>
+        </div>
+
+        {% if not request.user.has_resume %}
+                    <div class="alert alert-danger" role="alert">
+                        <b>You are seeing this because you have'nt created any resume. Create one from <a href="{% url 'resume:update-resume' %}">here</a></b>
+                    </div>
+            {% endif %}
+    </div>
+
+    <!-- job listing -->
+    <section class="job-list" id="jobs">
+        <div class="job-card">
+            <div class="job-name">
+                <img class="job-profile" src="{% static 'images/Tesla.png' %}" alt="">
+                <div class="job-detail">
+                    <h4>Tesla</h4>
+                    <h3>Mechanical Engineer</h3>
+                    <p> 
+                        Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                </div>
+            </div>
+            <div class="job-label"> 
+                <a class="label-a" href="#">HTML</a>
+                <a class="label-b" href="#">CSS</a>
+                <a class="label-c" href="#">Javascripts</a>
+            </div>
+            <div class="job-posted">
+                Posted 2mins ago
+            </div>
+        </div>
+        <div class="job-card">
+            <div class="job-name">
+                <img class="job-profile" src="{% static 'images/ebay.jpg' %}" alt="">
+                <div class="job-detail">
+                    <h4>Ebay</h4>
+                    <h3>Business Development</h3>
+                    <p> 
+                        Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                </div>
+            </div>
+            <div class="job-label"> 
+                <a class="label-a" href="#">HTML</a>
+                <a class="label-b" href="#">CSS</a>
+                <a class="label-c" href="#">Javascripts</a>
+            </div>
+            <div class="job-posted">
+                Posted 2mins ago
+            </div>
+        </div>
+        <div class="job-card">
+            <div class="job-name">
+                <img class="job-profile" src="{% static 'images/youtube.jpg' %}" alt="">
+                <div class="job-detail">
+                    <h4>Youtuber</h4>
+                    <h3>UI/ UX Designer</h3>
+                    <p> 
+                        Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                </div>
+            </div>
+            <div class="job-label"> 
+                <a class="label-a" href="#">HTML</a>
+                <a class="label-b" href="#">CSS</a>
+                <a class="label-c" href="#">Javascripts</a>
+            </div>
+            <div class="job-posted">
+                Posted an hour ago
+            </div>
+        </div>
+        <div class="job-card">
+            <div class="job-name">
+                <img class="job-profile" src="{% static 'images/react.jpg' %}" alt="">
+                <div class="job-detail">
+                    <h4>React</h4>
+                    <h3>Senior Developer</h3>
+                    <p> 
+                        Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                </div>
+            </div>
+            <div class="job-label"> 
+                <a class="label-a" href="#">HTML</a>
+                <a class="label-b" href="#">CSS</a>
+                <a class="label-c" href="#">Javascripts</a>
+            </div>
+            <div class="job-posted">
+                Posted 2mins ago
+            </div>
+        </div>
+        <div class="job-card">
+            <div class="job-name">
+                <img class="job-profile" src="{% static 'images/chrome.jpg' %}" alt="">
+                <div class="job-detail">
+                    <h4>Chrome</h4>
+                    <h3>Senior Developer</h3>
+                    <p> 
+                        Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                </div>
+            </div>
+            <div class="job-label"> 
+                <a class="label-a" href="#">HTML</a>
+                <a class="label-b" href="#">CSS</a>
+                <a class="label-c" href="#">Javascripts</a>
+            </div>
+            <div class="job-posted">
+                Posted 2mins ago
+            </div>
+        </div>
+        <div class="job-card">
+            <div class="job-name">
+                <img class="job-profile" src="{% static 'images/tiktok.jpg' %}" alt="">
+                <div class="job-detail">
+                    <h4>Tiktok</h4>
+                    <h3>Software Developer</h3>
+                    <p> 
+                        Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                </div>
+            </div>
+            <div class="job-label"> 
+                <a class="label-a" href="#">HTML</a>
+                <a class="label-b" href="#">CSS</a>
+                <a class="label-c" href="#">Javascripts</a>
+            </div>
+            <div class="job-posted">
+                Posted 2mins ago
+            </div>
+        </div>
+        <button class="job-more">More List</button>
+    </section>
+
+    <!-- join -->
+
+    <section class="join">
+        <div class="join-detail">
+            <h1 class="section-title">LETS START YOUR NEW JOB WITH US</h1>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            </p>
+            <button class="join-button">Join Now</button>
+        </div>
+    </section>
+
+    <!-- featured company -->
+    <section class="featured" id="companies">
+        <h1 class="section-title">Featured Companies</h1>
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        </p>
+        <div class="featured-wrapper">
+            <div class="featured-card">
+                <img src="{% static 'images/ebay.jpg' %}" class="featured-image" alt="">
+                <p>Ebay</p>
+                <button class="featured-button">View 2 Jobs</button>
+            </div>
+            <div class="featured-card">
+                <img src="{% static 'images/youtube.jpg' %}" class="featured-image" alt="">
+                <p>Youtube</p>
+                <button class="featured-button">View 1 Jobs</button>
+            </div>
+            <div class="featured-card">
+                <img src="{% static 'images/tiktok.jpg' %}" class="featured-image" alt="">
+                <p>Tiktok</p>
+                <button class="featured-button">View 3 Jobs</button>
+            </div>
+            <div class="featured-card">
+                <img src="{% static 'images/Tesla.png' %}" class="featured-image" alt="">
+                <p>Tesla</p>
+                <button class="featured-button">View 3 Jobs</button>
+            </div>
+            <div class="featured-card">
+                <img src="{% static 'images/chrome.jpg' %}" class="featured-image" alt="">
+                <p>Chrome</p>
+                <button class="featured-button">View 5 Jobs</button>
+            </div>
+            <div class="featured-card">
+                <img src="{% static 'images/react.jpg' %}" class="featured-image" alt="">
+                <p>React</p>
+                <button class="featured-button">View 4 Jobs</button>
+            </div>
+        </div>
+    </section>
+
+   {% endif %}
+    
+    <!-- Footer -->
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'job/base.html' %}
+{% load static %}
+{% block title %} Manage Jobs Page {% endblock %}
+{% block content %}
+
+
+    <section class="table ">
+
+        <section class="table__inner">
+
+            
+            <section class="table__header">
+            <h1>Manage Jobs</h1>
+        </section>
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job title</th>
+                        <th>Location</th>
+                        <th>Salary (NGN)</th>
+                        <th>No. of Applicants</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in jobs %}
+                    <tr>
+                        <td>{{job.title}}</td>
+                        <td>{{job.location}}, {{job.compane.location}}</td>
+                        <td>{{job.salary}}</td>
+                        <td><a href="{% url 'job:all-applicants' job.pk %}">{{job.applyjob_set.count}} view all</a></td>
+                        {% if job.is_available %}
+                        <td><button>Active</button></td>
+                        {% else %}
+                        <td><button>Not active</button></td>
+                        {% endif %}
+                        <td><a href="#">Update job</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </section>
+
+    </section>
+
+  {% endblock %}
