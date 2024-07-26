@@ -68,7 +68,7 @@ wheels/
 *.egg 
 *.manifest 
 *.spec 
-
+.vscode
 # Installer logs 
 pip-log.txt 
 pip-delete-this-directory.txt 
@@ -108,7 +108,7 @@ venv.bak/
 
 # mkdocs documentation 
 /site 
-
+/staticfiles
 # mypy 
 .mypy_cache/ 
 
